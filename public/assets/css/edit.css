@@ -1,0 +1,304 @@
+@font-face {
+    src: url("../fonts/rubik.ttf");
+    font-family: 'rubik';
+}
+
+body {
+    background-color: #333333;
+}
+
+
+.users-table {
+    font-family: rubik;
+    display: inline-block;
+}
+
+#add-user-btn {
+    display: inline-block;
+    background-color: #3c7aff;
+    border-radius: 5px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    font-family: rubik;
+    margin-bottom: 10px;
+}
+
+#add-user-btn:hover {
+    background-color: #3367da;
+}
+
+.users-table table {
+    width: 60vw;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+}
+
+#action-row {
+    padding: 0;
+}
+.users-table table tr {
+    border-bottom: 3px solid #1f1f1f;
+}
+
+.users-table table tr td,
+.users-table table tr th{
+    padding: 15px 10px;
+    font-weight: normal;
+    text-align: left;
+    color: white;
+}
+
+.users-table table thead tr  {
+    background-color: #1f1f1f;
+}
+
+#delete-btn,
+#edit-btn {
+    display: inline-block;
+    background-color: transparent;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 10px;
+    border-radius: 50%;
+}
+
+#delete-btn:hover,
+#edit-btn:hover {
+    background-color: #1f1f1f;
+}
+
+#delete-btn {
+    margin-left: 5px;
+}
+
+#delete-btn img,
+#edit-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+#edit-btn {
+    background-color: transparent;
+}
+
+.content {
+    margin-top: 100px;
+    margin-left: 300px;
+}
+
+h1 {
+    font-family: rubik;
+    margin-bottom: 10px;
+    color: white;
+}
+
+#username.null input,
+#password.null input {
+    box-shadow: 0 0 3px 1px #ff0c0c;
+}
+
+#username p,
+#password p {
+    visibility: hidden;
+    color: #ff0c0c;
+    font-size: 13px;
+    font-style: italic;
+}
+
+#username.null p,
+#password.null p {
+    visibility: visible;
+}
+
+.user-add-form {
+    font-family: rubik;
+    color: white;
+}
+
+.user-add-form input,
+.user-add-form select {
+    display: block;
+    background-color: #494949;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+}
+
+.user-add-form select,
+.user-add-form input[type=submit] {
+    margin-bottom: 20px;
+}
+
+#username,
+#password {
+    margin-bottom: 10px;
+}
+
+.user-add-form select {
+    width: 90px;
+    height: 30px;
+}
+
+.user-add-form input[type=submit] {
+    background-color: #3c7aff;
+    width: 60px;
+    height: 30px;
+}
+
+.user-add-form input[type=submit]:hover {
+    background-color: #3367da;
+}
+
+.user-add-form label {
+    margin-bottom: 5px;
+}
+
+.user-add-form input[type=text]:focus {
+    outline: none;
+    box-shadow: 0 0 3px 1px #3c7aff;
+}
+
+.user-add-form input[type=text] {
+    height: 45px;
+    width: 500px;
+}
+
+.pages-list {
+    padding: 0;
+    list-style: none;
+}
+
+.page {
+    width: 60vw;
+    margin-bottom: 15px;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    background-color: #1f1f1f;
+    border-radius: 5px;
+}
+
+.page span,
+.page div{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#edit-page-btn,
+#delete-page-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 20px;
+    height: 20px;
+}
+
+#delete-page-btn {
+    margin-top: 13px;
+}
+
+#page-info {
+    color: grey;
+    font-size: 15px;
+}
+
+.page:hover {
+    box-shadow: 0 0 5px 1px #000000;
+}
+
+.page p {
+    font-size: 20px;
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-family: rubik;
+    border-radius: 7px;
+}
+
+#add-page-btn {
+    display: inline-block;
+    background-color: #3c7aff;
+    border-radius: 5px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    font-family: rubik;
+    margin-bottom: 20px;
+}
+
+#add-page-btn:hover {
+    background-color: #3367da;
+}
+
+.add-page-form input[type=text]:focus {
+    outline: none;
+    box-shadow: 0 0 3px 1px #3c7aff;
+}
+
+#category p {
+    visibility: hidden;
+    color: #ff0c0c;
+    font-size: 13px;
+    font-style: italic;
+}
+
+#category.null input {
+    box-shadow: 0 0 3px 1px #ff0c0c;
+}
+
+#category.null p {
+    visibility: visible;
+}
+
+#category {
+    margin-bottom: 10px;
+    color: white;
+    font-family: rubik;
+}
+
+#category input {
+    display: block;
+    background-color: #494949;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+}
+
+.add-page-form input[type=text] {
+    height: 45px;
+    width: 500px;
+}
+
+.add-page-form {
+    color: white;
+}
+
+.add-page-form label {
+    margin-bottom: 5px;
+    font-family: rubik;
+}
+
+.add-page-form input[type=submit] {
+    background-color: #3c7aff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: rubik;
+    margin-top: 20px;
+    width: 60px;
+    height: 30px;
+}
+
+.add-page-form input[type=submit]:hover {
+    background-color: #3367da;
+}

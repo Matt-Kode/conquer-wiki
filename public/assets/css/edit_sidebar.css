@@ -1,0 +1,45 @@
+.sidebar-parent {
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+    top: 60px;
+    width: 250px;
+    z-index: 99;
+    display: block;
+    position: fixed;
+    background-color: #1f1f1f;
+}
+
+.sidebar-parent a{
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    font-family: rubik;
+    padding: 6px 6px;
+    font-size: 15px;
+}
+
+.sidebar-parent a.active {
+    background-color: #333333;
+    border-right: 6px solid #3c7aff;
+}
+
+.sidebar-parent a:hover {
+    background-color: #333333;
+}
+
+.sidebar-parent img {
+    width: 15px;
+    height: 15px;
+}
+
+.sidebar-parent p {
+    color: grey;
+    font-family: rubik;
+    padding: 5px 10px;
+}

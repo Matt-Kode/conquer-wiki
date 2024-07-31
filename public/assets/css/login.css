@@ -1,0 +1,123 @@
+@font-face {
+    src: url("../fonts/rubik.ttf");
+    font-family: 'rubik';
+}
+
+
+* {
+    margin: 0 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #494949;
+}
+
+.login-parent h1 {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.login-parent {
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.18);
+    border-radius: 5px;
+    width: 500px;
+    margin-top: 6%;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #333333;
+    font-family: rubik;
+}
+
+.login-parent h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.login-parent form input{
+    display: block;
+    padding: 5px 10px;
+    margin: 5px 0;
+    height: 45px;
+    background-color: #494949;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-family: rubik;
+    width: 100%;
+}
+
+#username,
+#password,
+.login-parent form input[type=submit] {
+    margin-bottom: 15px;
+}
+
+.login-parent form input[type=text]:focus,
+.login-parent form input[type=password]:focus{
+    outline: none;
+    box-shadow: 0 0 3px 1px #3c7aff;
+}
+
+.login-parent form input[type=submit]{
+    background-color: #3c7aff;
+    margin-top: 20px;
+    border: none;
+    font-size: 20px;
+    font-weight: 900;
+    color: white;
+    font-family: rubik;
+}
+
+.login-parent form input[type=submit]:hover {
+    background-color: #3367da;
+}
+
+.login-parent form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.error {
+    margin: 10px auto;
+    background-color: #ff0c0c;
+    padding: 10px 10px;
+    width: 80%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#username.null input,
+#password.null input {
+    box-shadow: 0 0 3px 1px #ff0c0c;
+}
+
+#username p,
+#password p {
+    visibility: hidden;
+    color: #ff0c0c;
+    font-size: 13px;
+    font-style: italic;
+}
+
+#username.null p,
+#password.null p {
+    visibility: visible;
+}
+
+@media (max-width: 1000px) {
+    .login-parent {
+        width: 100%;
+        box-shadow: none;
+    }
+
+    body {
+        background-color: #333333;
+    }
+}
