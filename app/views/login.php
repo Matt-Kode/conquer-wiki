@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link href="/public/assets/css/login.css" rel="stylesheet">
+    <link href="/assets/css/login.css" rel="stylesheet">
     <title><?= WEBSITE_NAME . " | " . $data['page_title']?></title>
 </head>
 <body>
@@ -33,5 +33,5 @@
     </form>
 </div>
 </body>
-<script src="../../public/assets/js/login.js"></script>
+<script src="/assets/js/login.js"></script>
 </html>

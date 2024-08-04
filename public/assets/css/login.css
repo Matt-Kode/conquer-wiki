@@ -1,6 +1,6 @@
 @font-face {
-    src: url("../fonts/rubik.ttf");
-    font-family: 'rubik';
+    src: url("../fonts/poppins.ttf");
+    font-family: 'poppins';
 }
 
 
@@ -30,7 +30,7 @@ body {
     flex-direction: column;
     color: white;
     background-color: #333333;
-    font-family: rubik;
+    font-family: poppins;
 }
 
 .login-parent h1 {
@@ -47,7 +47,7 @@ body {
     border-radius: 5px;
     border: none;
     color: white;
-    font-family: rubik;
+    font-family: poppins;
     width: 100%;
 }
 
@@ -70,7 +70,7 @@ body {
     font-size: 20px;
     font-weight: 900;
     color: white;
-    font-family: rubik;
+    font-family: poppins;
 }
 
 .login-parent form input[type=submit]:hover {

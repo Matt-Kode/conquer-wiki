@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link href="/public/assets/css/edit.css" rel="stylesheet">
+    <link href="/assets/css/edit.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title><?= WEBSITE_NAME . " | " . $data['page_title']?></title>
 </head>
@@ -45,7 +45,7 @@ include("edit_sidebar.php");
                 <td>{$username}</td>
                 <td>{$password}</td>
                 <td>{$role_weight}</td>
-                <td id='action-row'><a id='edit-btn' href=" . ROOT_DIR . "/edit/edit_user/{$userid}><img src='/public/assets/icons/edit.svg'></a><a id='delete-btn' href=" . ROOT_DIR . "/edit/delete_user/{$userid}><img src='/public/assets/icons/delete.svg'></a></td>
+                <td id='action-row'><a id='edit-btn' href=" . ROOT_DIR . "/edit/edit_user/{$userid}><img src='/assets/icons/edit.svg'></a><a id='delete-btn' href=" . ROOT_DIR . "/edit/delete_user/{$userid}><img src='/assets/icons/delete.svg'></a></td>
             </tr>";
             }
         }

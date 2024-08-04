@@ -2,7 +2,7 @@
 
 const WEBSITE_NAME = "CEMC Wiki";
 
-const ROOT_DIR = "/public";
+const ROOT_DIR = "";
 
 const DB_TYPE = 'mysql';
 const DB_HOST = 'localhost';

@@ -19,7 +19,7 @@
     cursor: pointer;
     border-radius: 5px;
     color: white;
-    font-family: rubik;
+    font-family: poppins;
     padding: 6px 6px;
     font-size: 15px;
 }
@@ -39,7 +39,7 @@
 }
 
 .sidebar-parent p {
-    color: grey;
-    font-family: rubik;
+    color: #494949;
+    font-family: poppins;
     padding: 5px 10px;
 }

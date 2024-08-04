@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link href="/public/assets/css/edit.css" rel="stylesheet">
+    <link href="/assets/css/edit.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title><?= WEBSITE_NAME . " | " . $data['page_title']?></title>
 </head>
@@ -40,6 +40,6 @@ include("edit_sidebar.php");
 
 </body>
 
-<script src="../../public/assets/js/edit.js"></script>
+<script src="/assets/js/edit.js"></script>
 
 </html>

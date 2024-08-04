@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link href="/public/assets/css/edit.css" rel="stylesheet">
+    <link href="/assets/css/edit.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title><?= WEBSITE_NAME . " | " . $data['page_title']?></title>
 </head>
@@ -26,6 +26,8 @@ include("edit_sidebar.php");
 
         <?php
         if (is_array($data['pages'])) {
+
+
             for ($i = 0; $i < count($data['pages']); $i++) {
 
                 $pageid = $data['pages'][$i]->id;
@@ -34,16 +36,17 @@ include("edit_sidebar.php");
                 $pagecreatedby = $data['pages'][$i]->created_by;
                 $pageedited = $data['pages'][$i]->last_edited;
                 $pageeditedby = $data['pages'][$i]->last_edited_by;
+                $pageposition = $data['pages'][$i]->position;
 
                 echo
-                    "<li class='page'>
+                    "<li class='page'  data-index={$pageid} data-position={$pageposition}>
                     <div>
                         <p>{$pagename}</p>
                         <p id='page-info'>Created by: {$pagecreatedby} @ {$pagecreated}&nbsp;&nbsp;&nbsp;Last edited by: {$pageeditedby} @ {$pageedited}</p>
                     </div>
                     <span>
-                        <a href=" . ROOT_DIR . "/edit/edit_page/{$pageid}><img id='#edit-page-btn' src='/public/assets/icons/edit.svg'></a>
-                        <a href=" . ROOT_DIR . "/edit/delete_page/{$pageid}><img id='delete-page-btn' src='/public/assets/icons/delete.svg'></a>
+                        <a href=" . ROOT_DIR . "/edit/edit_page/{$pageid}><img id='#edit-page-btn' src='/assets/icons/edit.svg'></a>
+                        <a href=" . ROOT_DIR . "/edit/delete_page/{$pageid}><img id='delete-page-btn' src='/assets/icons/delete.svg'></a>
                     </span>
                 </li>";
             }
@@ -64,6 +67,6 @@ include("edit_sidebar.php");
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
-<script src="/public/assets/js/pages.js"></script>
+<script src="/assets/js/pages.js"></script>
 
 </html>

@@ -119,36 +119,37 @@ Class Edit extends Controller
             $user->update_session();
             if ($user->is_admin()) {
 
+                $DB = new Database();
+                $query = "SELECT * FROM users WHERE id=:userid LIMIT 1";
+                $user = $DB->read($query, array(':userid' => $userid));
+
                 if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['permission'])) {
 
-                    $DB = new Database();
-
-                    $query = "UPDATE users SET username=:username, password=:password, permission=:permission WHERE id=:userid";
-
-                    $DB->write($query, array('username' => $_POST['username'], 'password' => $_POST['password'], 'permission' => $_POST['permission'], 'userid' => $userid));
+                    $update_query = "UPDATE users SET username=:username, password=:password, permission=:permission WHERE id=:userid";
+                    $DB->write($update_query, array('username' => $_POST['username'], 'password' => $_POST['password'], 'permission' => $_POST['permission'], 'userid' => $userid));
 
                     header("Location: " . ROOT_DIR . "/edit/users");
                     return;
 
                 }
 
-                    $data['page_title'] = 'Edit';
-                    $data['logged_in'] = true;
-                    $data['is_admin'] = true;
-
-                    $DB = new Database();
-                    $query = "SELECT * FROM users WHERE id=:userid LIMIT 1";
-
-                    $user = $DB->read($query, array(':userid' => $userid));
-
-                    $data['username'] = $user[0]->username;
-                    $data['permission'] = $user[0]->permission;
-                    $data['password'] = $user[0]->password;
-
-                    $data['active_page'] = 'users';
-
-                    $this->view('edit_edit_user', $data);
+                if (!$user) {
+                    header("Location: " . ROOT_DIR . "/edit/users");
                     return;
+                }
+
+                $data['page_title'] = 'Edit';
+                $data['logged_in'] = true;
+                $data['is_admin'] = true;
+
+                $data['username'] = $user[0]->username;
+                $data['permission'] = $user[0]->permission;
+                $data['password'] = $user[0]->password;
+
+                $data['active_page'] = 'users';
+
+                $this->view('edit_edit_user', $data);
+                return;
                 }
                 header("Location: " . ROOT_DIR . "/home");
 
@@ -170,7 +171,7 @@ Class Edit extends Controller
                     $data['active_page'] = 'pages';
 
                     $DB = new Database();
-                    $query = "SELECT * FROM pages";
+                    $query = "SELECT * FROM pages ORDER BY position";
                     $pages = $DB->read($query);
 
                     $data['pages'] = $pages;
@@ -240,4 +241,132 @@ Class Edit extends Controller
         header("Location: " . ROOT_DIR . "/home");
 
         }
+
+    function edit_page($pageid = '') {
+
+        if ($pageid === '') {
+            header("Location: " . ROOT_DIR . "/edit/pages");
+            return;
+        }
+
+        $user = $this->loadModel('user');
+
+        if ($user->check_logged_in()) {
+            $user->update_session();
+            if ($user->is_editor() || $user->is_admin()) {
+
+                $db = new Database();
+                $query = "SELECT * FROM pages WHERE id=:pageid LIMIT 1";
+                $page = $db->read($query, array('pageid' => $pageid));
+
+                if (!$page) {
+                    header("Location: " . ROOT_DIR . "/edit/pages");
+                    return;
+                }
+
+                if (isset($_POST['content']) && isset($_POST['name'])) {
+
+                    $editing_user = $_SESSION['username'];
+                    date_default_timezone_set("America/New_York");
+                    $date = date('Y-m-d H:i:s a');
+
+                    $update_query = "UPDATE pages SET content=:content, name=:name, last_edited=:date, last_edited_by=:editing_user WHERE id=:pageid";
+                    $db->write($update_query, array('content' => $_POST['content'], 'name' => $_POST['name'],'date' => $date, 'editing_user' => $editing_user,  'pageid' => $pageid));
+                    header("Location: " . ROOT_DIR . "/edit/pages");
+                    return;
+                }
+
+                $data['page_title'] = 'Edit';
+                $data['logged_in'] = true;
+                $data['is_admin'] = $user->is_admin();
+                $data['active_page'] = 'pages';
+                $data['page_name'] = $page[0]->name;
+                $data['page_content'] = $page[0]->content;
+
+                $this->view('edit_edit_page', $data);
+                return;
+            }
+        }
+
+        header("Location: " . ROOT_DIR . "/home");
+
+    }
+
+        function update_page_positions() {
+
+        $user = $this->loadModel('user');
+
+        if ($user->check_logged_in()) {
+            $user->update_session();
+            if ($user->is_editor() || $user->is_admin()) {
+
+                $db = new Database();
+
+                if (isset($_POST['update'])) {
+                    foreach ($_POST['positions'] as $position) {
+                        $index = $position[0];
+                        $newPosition = $position[1];
+
+                        $query = "UPDATE pages SET position=:position WHERE id=:index";
+                        $db->write($query, array('position' => $newPosition, 'index' => $index));
+                    }
+                }
+            }
+        }
+        header("Location: " . ROOT_DIR . "/home");
+        }
+
+        function upload_image() {
+
+        $user = $this->loadModel('user');
+
+        if ($user->check_logged_in()) {
+            $user->update_session();
+            if ($user->is_editor() || $user->is_admin()) {
+                $accepted_origins = array("http://localhost", "http://192.168.1.1", "http://example.com");
+
+                $absoluteImagePath = ROOT_DIR . "/assets/uploads/";
+
+                if (isset($_SERVER['HTTP_ORIGIN'])) {
+
+                    if (in_array($_SERVER['HTTP_ORIGIN'], $accepted_origins)) {
+                        header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+                    } else {
+                        header("HTTP/1.1 403 Origin Denied");
+                        return;
+                    }
+                }
+
+                if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+                    header("Access-Control-Allow-Methods: POST, OPTIONS");
+                    return;
+                }
+
+                reset ($_FILES);
+                $temp = current($_FILES);
+                if (is_uploaded_file($temp['tmp_name'])){
+
+                    if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
+                        header("HTTP/1.1 400 Invalid file name.");
+                        return;
+                    }
+
+                    if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
+                        header("HTTP/1.1 400 Invalid extension.");
+                        return;
+                    }
+
+                    move_uploaded_file($temp['tmp_name'], $absoluteImagePath . $temp['name']);
+
+                    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://";
+                    $baseurl = $protocol . $_SERVER["HTTP_HOST"];
+
+                    echo json_encode(array('location' => $baseurl . $absoluteImagePath . $temp['name']));
+                } else {
+                    header("HTTP/1.1 500 Server Error");
+                }
+            }
+        }
+        }
+
 }
