@@ -7,9 +7,7 @@ window.addEventListener('submit', (e) => {
     if (nameinput.value === '') {
         e.preventDefault();
         namediv.classList.add('null');
-        return;
     }
-    addHeadingIds();
 
 });
 
@@ -29,12 +27,11 @@ tinymce.init({
     skin: 'oxide-dark',
     width: '60vw',
     content_style: 'body {color: #fff; background-color: #333333}',
-    init_instance_callback: setEditableContent
+    init_instance_callback: checkForEditableContent
 });
 
-function setEditableContent() {
-    if (document.getElementById('content') != null) {
-        tinymce.activeEditor.setContent(document.getElementById('content').value);
-        document.getElementById("content").value = '';
+function checkForEditableContent() {
+    if (typeof saveEditableContent === 'function') {
+        saveEditableContent();
     }
 }

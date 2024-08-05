@@ -17,9 +17,7 @@ include("edit_sidebar.php");
 <body>
 <div class="content">
     <h1>Edit page</h1>
-
     <form class="add-page-form" method="post">
-        <input id="content" type="hidden" value='<?=$data['page_content']?>'>
         <label for="namein">Name</label>
         <div id="name">
             <input type="text" id="namein" name="name" placeholder="Name" value='<?= $data['page_name']?>'>
@@ -35,4 +33,10 @@ include("edit_sidebar.php");
 </body>
 <script type="text/javascript" src="/assets/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="/assets/js/page-editor.js"></script>
+<script>
+    function saveEditableContent() {
+        let content = '<?=$data['page_content']?>';
+        tinymce.activeEditor.setContent(content);
+    }
+</script>
 </html>
