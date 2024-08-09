@@ -11,31 +11,40 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link href="/assets/css/home.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/page.css">
     <title><?= WEBSITE_NAME . " | " . $data['page_title']?></title>
 </head>
-
 
 <?php
 include("header.php");
 ?>
-
 <body>
-
 <div class="container">
-    <img class="logo" src="/assets/icons/logo.png">
-    <p>Welcome to the official <b>ConquerEarthMC</b> Wiki! This is a ConquerEarth-led, community-maintained Wiki for ConquerEarthMC. Our goal is to provide the most accurate information in the best way possible. We will continually improve where needed and hope to provide the best transparency.</p>
-    <p>Interested in helping improve the Wiki? Join our <a href="#">discord</a> and make a ticket to apply.</p>
-    <?php
-        foreach ($data['pages'] as $page) {
-            echo "
-               <a class='page' href='/page/{$page->page_url}'>{$page->name}</a>
-            ";
-        }
-    ?>
+    <div class="pages">
+        <p>PAGES</p>
+        <?php
+            foreach ($data['all_pages_info'] as $page) {
+                echo "
+                <a class='" . checkActive($data, $page->name) . "' href='/page/{$page->page_url}'>{$page->name}</a>
+                ";
+            }
+        ?>
+    </div>
 
+    <div class="page-contents">
+        <p>PAGE CONTENTS</p>
+    </div>
+
+    <div class="main-content">
+        <?php
+            echo $data['content'];
+        ?>
+    </div>
 </div>
+
+
 
 </body>
 
+<script src="/assets/js/page.js"></script>
 </html>

@@ -19,7 +19,7 @@ function savePositions() {
     });
 
     $.ajax({
-        url: '/public/edit/update_page_positions',
+        url: '/edit/update_page_positions',
         method: 'POST',
         dataType: 'text',
         data: {

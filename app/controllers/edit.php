@@ -200,9 +200,11 @@ Class Edit extends Controller
                         date_default_timezone_set("America/New_York");
                         $date = date('Y-m-d H:i:s a');
 
+                        $page_url = str_replace(" ", "_", strtolower($_POST['name']));
+
                         $DB = new Database();
-                        $query = "INSERT INTO pages (name, content, created_at, created_by, last_edited, last_edited_by) VALUES (:name, :content, :created_at, :created_by, :last_edited, :last_edited_by)";
-                        $DB->write($query, array('name' => $_POST['name'], 'content' => $_POST['content'], 'created_at' => $date, 'created_by' => $creating_user, 'last_edited' => $date, 'last_edited_by' => $creating_user));
+                        $query = "INSERT INTO pages (name, page_url, content, created_at, created_by, last_edited, last_edited_by) VALUES (:name, :page_url, :content, :created_at, :created_by, :last_edited, :last_edited_by)";
+                        $DB->write($query, array('name' => $_POST['name'], 'page_url' => $page_url, 'content' => $_POST['content'], 'created_at' => $date, 'created_by' => $creating_user, 'last_edited' => $date, 'last_edited_by' => $creating_user));
 
                         header("Location: " . ROOT_DIR . "/edit/pages");
                         return;
@@ -270,8 +272,10 @@ Class Edit extends Controller
                     date_default_timezone_set("America/New_York");
                     $date = date('Y-m-d H:i:s a');
 
-                    $update_query = "UPDATE pages SET content=:content, name=:name, last_edited=:date, last_edited_by=:editing_user WHERE id=:pageid";
-                    $db->write($update_query, array('content' => $_POST['content'], 'name' => $_POST['name'],'date' => $date, 'editing_user' => $editing_user,  'pageid' => $pageid));
+                    $page_url = str_replace(" ", "_", strtolower($_POST['name']));
+
+                    $update_query = "UPDATE pages SET content=:content, page_url=:page_url, name=:name, last_edited=:date, last_edited_by=:editing_user WHERE id=:pageid";
+                    $db->write($update_query, array('content' => $_POST['content'], 'page_url' => $page_url, 'name' => $_POST['name'],'date' => $date, 'editing_user' => $editing_user,  'pageid' => $pageid));
                     header("Location: " . ROOT_DIR . "/edit/pages");
                     return;
                 }
@@ -325,7 +329,7 @@ Class Edit extends Controller
             if ($user->is_editor() || $user->is_admin()) {
                 $accepted_origins = array("http://localhost", "http://192.168.1.1", "http://example.com");
 
-                $absoluteImagePath = ROOT_DIR . "/assets/uploads/";
+                $ImagePath = "assets/uploads/";
 
                 if (isset($_SERVER['HTTP_ORIGIN'])) {
 
@@ -356,12 +360,12 @@ Class Edit extends Controller
                         return;
                     }
 
-                    move_uploaded_file($temp['tmp_name'], $absoluteImagePath . $temp['name']);
+                    move_uploaded_file($temp['tmp_name'], $ImagePath . $temp['name']);
 
                     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://";
-                    $baseurl = $protocol . $_SERVER["HTTP_HOST"];
+                    $baseurl = $protocol . $_SERVER["HTTP_HOST"] . "/";
 
-                    echo json_encode(array('location' => $baseurl . $absoluteImagePath . $temp['name']));
+                    echo json_encode(array('location' => $baseurl . $ImagePath . $temp['name']));
                 } else {
                     header("HTTP/1.1 500 Server Error");
                 }

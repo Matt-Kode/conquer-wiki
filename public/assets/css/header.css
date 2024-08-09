@@ -33,11 +33,17 @@
 }
 
 #navbar-parent img {
-    width: 37px;
-    height: 37px;
-    padding: 5px 5px;
+    width: 40px;
+    height: 40px;
+    padding: 7px 7px;
     border-radius: 50%;
     cursor: pointer;
+    background-color: transparent;
+}
+
+#navbar-parent button {
+    background-color: transparent;
+    border: none;
 }
 
 #navbar-parent img:hover {
@@ -49,7 +55,7 @@
     text-decoration: none;
     font-family: jaini;
     color: transparent;
-    background: linear-gradient(to right, #de0c0c, #de620c);
+    background: linear-gradient(to right, #D4145A ,#FBB03B);
     background-clip: text;
 }
 
@@ -89,4 +95,73 @@
 .account.active .account-dropdown {
     visibility: visible;
     opacity: 1;
+}
+
+.search {
+    width: 600px;
+    margin: 8% auto;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #494949;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.search-input {
+    background-color: transparent;
+    height: 45px;
+    border: none;
+    margin-left: 5px;
+    outline: none;
+    color: white;
+    font-family: poppins;
+    width: 100%;
+}
+
+.search-backdrop {
+    display: none;
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+}
+
+.search-bar img {
+    width: 20px;
+}
+
+.search-results {
+    margin-top: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.result {
+    display: block;
+    background-color: #494949;
+    font-family: poppins;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+
+}
+
+.result:hover {
+    background-color: #333333;
+}
+
+.no-results {
+    padding: 5px 10px;
+    color: white;
+    font-family: poppins;
+    text-align: center;
+    font-size: 20px;
+    background-color: #494949;
 }

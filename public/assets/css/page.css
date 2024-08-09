@@ -1,0 +1,112 @@
+@font-face {
+    src: url("../fonts/poppins.ttf");
+    font-family: 'poppins';
+}
+
+body {
+    background-color: #333333;
+}
+
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 100px;
+    height: 100vh;
+}
+
+.pages {
+    position: fixed;
+    display: inline-block;
+    height: 100%;
+    width: 300px;
+}
+
+.pages a {
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    color: white;
+    font-family: poppins;
+    padding: 10px 10px 10px 20px;
+    font-size: 17px;
+}
+
+.pages a.active {
+    background-color: #1f1f1f;
+    border-right: 6px solid #3c7aff;
+}
+
+.pages p {
+    font-family: poppins;
+    padding: 10px 10px 10px 20px;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.page-contents {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 250px;
+}
+
+.page-contents a {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+    color: white;
+    font-family: poppins;
+    padding: 10px 20px 10px 10px;
+    font-size: 17px;
+}
+
+.page-contents a.active {
+    background-color: #1f1f1f;
+    border-left: 6px solid #3c7aff;
+}
+
+.page-contents p {
+    text-align: right;
+    font-family: poppins;
+    padding: 10px 20px 10px 10px;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.main-content {
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    width: 940px;
+    padding: 0 20px;
+    color: white;
+    font-family: poppins;
+}
+
+@media (max-width: 1630px) {
+    .page-contents {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 350px;
+    }
+}
+
+@media (max-width: 1230px) {
+    .pages {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: auto;
+    }
+}

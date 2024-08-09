@@ -75,6 +75,9 @@ body {
 
 #delete-btn img,
 #edit-btn img {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
     width: 20px;
     height: 20px;
 }
@@ -95,21 +98,28 @@ h1 {
 }
 
 #username.null input,
-#password.null input {
+#password.null input,
+#username.too-long input,
+#password.too-long input{
     box-shadow: 0 0 3px 1px #ff0c0c;
 }
 
 #username p,
 #password p {
-    visibility: hidden;
+    display: none;
     color: #ff0c0c;
     font-size: 13px;
     font-style: italic;
 }
 
-#username.null p,
-#password.null p {
-    visibility: visible;
+#username.null #no-value,
+#password.null #no-value {
+    display: block;
+}
+
+#password.too-long #too-long,
+#username.too-long #too-long {
+    display: block;
 }
 
 .user-add-form {
@@ -119,6 +129,7 @@ h1 {
 
 .user-add-form input,
 .user-add-form select {
+    margin: 5px 0;
     display: block;
     background-color: #494949;
     color: white;
@@ -134,7 +145,7 @@ h1 {
 
 #username,
 #password {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .user-add-form select {
@@ -201,7 +212,7 @@ h1 {
 }
 
 #page-info {
-    color: grey;
+    color: #868686;
     font-size: 15px;
 }
 
@@ -241,18 +252,23 @@ h1 {
 }
 
 #name p {
-    visibility: hidden;
+    display: none;
     color: #ff0c0c;
     font-size: 13px;
     font-style: italic;
 }
 
-#name.null input {
+#name.null input,
+#name.too-long input {
     box-shadow: 0 0 3px 1px #ff0c0c;
 }
 
-#name.null p {
-    visibility: visible;
+#name.null #no-value {
+    display: block;
+}
+
+#name.too-long #too-long {
+    display: block;
 }
 
 #name {
@@ -262,6 +278,7 @@ h1 {
 }
 
 #name input {
+    margin: 5px 0;
     display: block;
     background-color: #494949;
     color: white;

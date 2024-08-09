@@ -6,7 +6,14 @@ window.addEventListener('submit', (e) => {
 
     if (nameinput.value === '') {
         e.preventDefault();
+        namediv.classList.remove('too-long');
         namediv.classList.add('null');
+    }
+
+    if (nameinput.value.length > 16) {
+        e.preventDefault();
+        namediv.classList.remove('null');
+        namediv.classList.add('too-long');
     }
 
 });
@@ -14,6 +21,7 @@ window.addEventListener('submit', (e) => {
 tinymce.init({
     selector: "#text-editor",
     height: 500,
+    menubar: 'edit insert view format table',
     plugins: [
         'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview'
         , 'searchreplace', 'visualblocks', 'code', 'fullscreen',
@@ -23,7 +31,7 @@ tinymce.init({
         'bold italic backcolor | alignleft aligncenter ' +
         'alignright alignjustify | bullist numlist outdent indent | ' +
         'removeformat',
-    images_upload_url: "/public/edit/upload_image",
+    images_upload_url: "/edit/upload_image",
     skin: 'oxide-dark',
     width: '60vw',
     content_style: 'body {color: #fff; background-color: #333333}',

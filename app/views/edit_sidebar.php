@@ -1,16 +1,6 @@
 <head>
     <link href="/assets/css/edit_sidebar.css" rel="stylesheet">
 <html>
-
-<?php
-function checkActive($pageData=[], $page) {
-    if ($pageData['active_page']=== $page) {
-        return "active";
-    }
-    return "";
-}
-?>
-
 <div class="sidebar-parent">
     <p>Site</p>
     <a class="<?php echo checkActive($data,"dashboard")?>" href=<?= ROOT_DIR . "/edit/dashboard"?>><img src="/assets/icons/dashboard.svg">&nbsp;&nbsp;Dashboard</a>

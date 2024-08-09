@@ -5,18 +5,14 @@ Class Home extends Controller {
     function index() {
 
         $data['page_title'] = 'home';
-        $data['logged_in'] = false;
-        $data['is_admin'] = false;
 
+        $db = new Database();
+        $query = "SELECT * FROM pages ORDER BY position";
+        $pages = $db->read($query);
+
+        $data['pages'] = $pages;
         $user = $this->loadModel('user');
-
-        if ($user->check_logged_in()) {
-            $data['logged_in'] = true;
-            $data['username'] = $_SESSION['username'];
-            if ($user->is_admin()) {
-                $data['is_admin'] = true;
-            }
-        }
+        $data['logged_in'] = $user->check_logged_in();
 
         $this->view('home', $data);
     }
