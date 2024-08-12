@@ -1,5 +1,6 @@
 <head>
     <link href="/assets/css/edit_sidebar.css" rel="stylesheet">
+</head>
 <html>
 <div class="sidebar-parent">
     <p>Site</p>

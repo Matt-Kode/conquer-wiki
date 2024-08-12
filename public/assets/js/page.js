@@ -1,6 +1,10 @@
 const pagecontents = document.querySelector(".page-contents");
 const h1s = document.getElementsByTagName("h1");
 
+if (h1s.length == 0) {
+    document.querySelector('.page-contents > p').style.display = 'none';
+    }
+
 for (let i = 0; i < h1s.length; i++) {
     let h1 = h1s[i];
     if (!h1.id) {

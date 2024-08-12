@@ -7,23 +7,24 @@ Class User {
         if (isset($POST['username']) && isset($POST['password'])) {
 
             $arr['username'] = $POST['username'];
-            $arr['password'] = $POST['password'];
 
             $DB = new Database();
-            $query = 'SELECT * FROM users WHERE username=:username AND password=:password LIMIT 1';
+            $query = 'SELECT * FROM users WHERE username=:username LIMIT 1';
             $data = $DB ->read($query, $arr);
 
             if (is_array($data)) {
 
-                $_SESSION['user_id'] = $data[0]->id;
-                $_SESSION['username'] = $data[0]->username;
-                $_SESSION['permission'] = $data[0]->permission;
+                if (password_verify($POST['password'], $data[0]->password)) {
+                    $_SESSION['user_id'] = $data[0]->id;
+                    $_SESSION['username'] = $data[0]->username;
+                    $_SESSION['permission'] = $data[0]->permission;
+                }  else {
+                    return 1;
+                }
 
             } else {
-                return 1;
+                return 2;
             }
-        } else {
-            return 2;
         }
     return 0;
     }

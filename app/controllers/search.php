@@ -14,7 +14,7 @@ Class Search extends Controller {
             $resultElements = [];
             if ($results) {
                 foreach ($results as $result) {
-                    $resultElements[] = "<a class='result' href='/" . "#" . "'>" . $result->name . "</a>";
+                    $resultElements[] = "<a class='result' href='/page/" . $result->page_url . "'>" . $result->name . "</a>";
                 }
             } else {
                 $resultElements[] = "<p class='no-results'>No results found for \"" . $_POST['searchquery'] . "\"</p>";
@@ -24,10 +24,7 @@ Class Search extends Controller {
             return;
 
         }
-
-        header("Location: ");
-
-
+        header("Location: /home");
     }
 
 }

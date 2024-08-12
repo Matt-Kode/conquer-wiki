@@ -20,11 +20,11 @@
 
     <?php
         if ($data['error_code'] == 1) {
-            echo "<div class='error'><img src='/assets/icons/error.svg'>&nbspPlease enter valid username and password</div>";
+            echo "<div class='error'><img src='/assets/icons/error.svg'>&nbspPassword is incorrect</div>";
         }
 
         if ($data['error_code'] == 2) {
-            echo "<div class='error'><img src='/assets/icons/error.svg'>&nbspInvalid username or password</div>";
+            echo "<div class='error'><img src='/assets/icons/error.svg'>&nbspUser does not exist</div>";
         }
     ?>
     <form method="post">

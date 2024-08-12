@@ -6,12 +6,11 @@ Class Edit extends Controller
 
     function index()
     {
-
+        header("Location: /edit/pages");
     }
 
     function users()
     {
-
         $user = $this->loadModel('user');
 
         if ($user->check_logged_in()) {
@@ -34,8 +33,8 @@ Class Edit extends Controller
 
             return;
         }
-            header("Location: " . ROOT_DIR . "/home");
     }
+        header("Location: " . ROOT_DIR . "/home");
 
     }
 
@@ -52,40 +51,52 @@ Class Edit extends Controller
         if ($user->check_logged_in()) {
             $user->update_session();
             if ($user->is_admin()) {
-                $DB = new Database();
 
-                $query = "DELETE FROM users WHERE id=:userid";
+                if (isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
 
-                $DB->write($query, array('userid' => $userid));
+                    $DB = new Database();
 
-                header("Location: " . ROOT_DIR . "/edit/users");
-                return;
+                    $query = "DELETE FROM users WHERE id=:userid";
+
+                    $DB->write($query, array('userid' => $userid));
+
+                    return;
+                }
             }
         }
-
         header("Location: " . ROOT_DIR . "/home");
 
     }
 
     function add_user()
     {
-
         $user = $this->loadModel('user');
 
         if ($user->check_logged_in()) {
             $user->update_session();
             if ($user->is_admin()) {
 
-                if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['permission'])) {
+                $data['error_code'] = 0;
+                if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['permission'])  && isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
+
+                    $hashedpassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+                    date_default_timezone_set("America/New_York");
+                    $date = date('Y-m-d H:i:s a');
 
                     $DB = new Database();
 
-                    $query = "INSERT INTO users (username, password, permission) VALUES (:username, :password, :permission)";
+                    if (!$DB->user_exists($_POST['username'])) {
 
-                    $DB->write($query, array('username' => $_POST['username'], 'password' => $_POST['password'], 'permission' => $_POST['permission']));
+                        $query = "INSERT INTO users (username, password, permission, created_at) VALUES (:username, :password, :permission, :date)";
 
-                    header("Location: " . ROOT_DIR . "/edit/users");
-                    return;
+                        $DB->write($query, array('username' => $_POST['username'], 'password' => $hashedpassword, 'permission' => $_POST['permission'], 'date' => $date));
+
+                        header("Location: " . ROOT_DIR . "/edit/users");
+                        return;
+                    } else {
+                        $data['error_code'] = 1;
+                    }
 
                 }
 
@@ -119,18 +130,28 @@ Class Edit extends Controller
             $user->update_session();
             if ($user->is_admin()) {
 
+                $data['error_code'] = 0;
                 $DB = new Database();
                 $query = "SELECT * FROM users WHERE id=:userid LIMIT 1";
                 $user = $DB->read($query, array(':userid' => $userid));
 
-                if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['permission'])) {
+                if (isset($_POST['username']) && isset($_POST['permission']) && isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
 
-                    $update_query = "UPDATE users SET username=:username, password=:password, permission=:permission WHERE id=:userid";
-                    $DB->write($update_query, array('username' => $_POST['username'], 'password' => $_POST['password'], 'permission' => $_POST['permission'], 'userid' => $userid));
+                    if ($DB->user_exists($_POST['username'])) {
+                        if ($_POST['password'] != '') {
+                            $hashedpassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-                    header("Location: " . ROOT_DIR . "/edit/users");
-                    return;
-
+                            $update_query = "UPDATE users SET username=:username, password=:password, permission=:permission WHERE id=:userid";
+                            $DB->write($update_query, array('username' => $_POST['username'], 'password' => $hashedpassword, 'permission' => $_POST['permission'], 'userid' => $userid));
+                        } else {
+                            $update_query = "UPDATE users SET username=:username, permission=:permission WHERE id=:userid";
+                            $DB->write($update_query, array('username' => $_POST['username'], 'permission' => $_POST['permission'], 'userid' => $userid));
+                        }
+                        header("Location: " . ROOT_DIR . "/edit/users");
+                        return;
+                    } else {
+                        $data['error_code'] = 1;
+                    }
                 }
 
                 if (!$user) {
@@ -144,7 +165,6 @@ Class Edit extends Controller
 
                 $data['username'] = $user[0]->username;
                 $data['permission'] = $user[0]->permission;
-                $data['password'] = $user[0]->password;
 
                 $data['active_page'] = 'users';
 
@@ -194,7 +214,7 @@ Class Edit extends Controller
                 $user->update_session();
                 if ($user->is_editor() || $user->is_admin()) {
 
-                    if (isset($_POST['content']) && isset($_POST['name'])) {
+                    if (isset($_POST['content']) && isset($_POST['name'])  && isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
 
                         $creating_user = $_SESSION['username'];
                         date_default_timezone_set("America/New_York");
@@ -266,7 +286,7 @@ Class Edit extends Controller
                     return;
                 }
 
-                if (isset($_POST['content']) && isset($_POST['name'])) {
+                if (isset($_POST['content']) && isset($_POST['name'])  && isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
 
                     $editing_user = $_SESSION['username'];
                     date_default_timezone_set("America/New_York");
@@ -303,10 +323,9 @@ Class Edit extends Controller
         if ($user->check_logged_in()) {
             $user->update_session();
             if ($user->is_editor() || $user->is_admin()) {
-
                 $db = new Database();
 
-                if (isset($_POST['update'])) {
+                if (isset($_POST['positions'])) {
                     foreach ($_POST['positions'] as $position) {
                         $index = $position[0];
                         $newPosition = $position[1];
@@ -314,9 +333,10 @@ Class Edit extends Controller
                         $query = "UPDATE pages SET position=:position WHERE id=:index";
                         $db->write($query, array('position' => $newPosition, 'index' => $index));
                     }
+                    return;
+                }
                 }
             }
-        }
         header("Location: " . ROOT_DIR . "/home");
         }
 
@@ -327,8 +347,8 @@ Class Edit extends Controller
         if ($user->check_logged_in()) {
             $user->update_session();
             if ($user->is_editor() || $user->is_admin()) {
-                $accepted_origins = array("http://localhost", "http://192.168.1.1", "http://example.com");
 
+                $accepted_origins = array("http://localhost", "https://wiki.conquerearthmc.com");
                 $ImagePath = "assets/uploads/";
 
                 if (isset($_SERVER['HTTP_ORIGIN'])) {
@@ -346,31 +366,36 @@ Class Edit extends Controller
                     return;
                 }
 
-                reset ($_FILES);
+                reset($_FILES);
                 $temp = current($_FILES);
-                if (is_uploaded_file($temp['tmp_name'])){
+                if (!is_null($temp['tmp_name'])) {
+                    if (is_uploaded_file($temp['tmp_name'])) {
 
-                    if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
-                        header("HTTP/1.1 400 Invalid file name.");
+                        if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
+                            header("HTTP/1.1 400 Invalid file name.");
+                            return;
+                        }
+
+                        if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
+                            header("HTTP/1.1 400 Invalid extension.");
+                            return;
+                        }
+
+                        move_uploaded_file($temp['tmp_name'], $ImagePath . $temp['name']);
+
+                        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://";
+                        $baseurl = $protocol . $_SERVER["HTTP_HOST"] . "/";
+
+                        echo json_encode(array('location' => $baseurl . $ImagePath . $temp['name']));
+                        return;
+                    } else {
+                        header("HTTP/1.1 500 Server Error");
                         return;
                     }
-
-                    if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
-                        header("HTTP/1.1 400 Invalid extension.");
-                        return;
-                    }
-
-                    move_uploaded_file($temp['tmp_name'], $ImagePath . $temp['name']);
-
-                    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://";
-                    $baseurl = $protocol . $_SERVER["HTTP_HOST"] . "/";
-
-                    echo json_encode(array('location' => $baseurl . $ImagePath . $temp['name']));
-                } else {
-                    header("HTTP/1.1 500 Server Error");
                 }
             }
         }
+        header("Location: " . ROOT_DIR . "/home");
         }
 
 }

@@ -99,7 +99,8 @@
 
 .search {
     width: 600px;
-    margin: 8% auto;
+    padding: 0 20px;
+    margin: 60px auto;
 }
 
 .search-bar {
@@ -114,11 +115,11 @@
     background-color: transparent;
     height: 45px;
     border: none;
+    width: 100%;
     margin-left: 5px;
     outline: none;
     color: white;
     font-family: poppins;
-    width: 100%;
 }
 
 .search-backdrop {
@@ -164,4 +165,10 @@
     text-align: center;
     font-size: 20px;
     background-color: #494949;
+}
+
+@media (max-width: 640px) {
+    .search {
+        width: 100%;
+    }
 }

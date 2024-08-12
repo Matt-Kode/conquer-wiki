@@ -1,0 +1,15 @@
+@font-face {
+    src: url("../fonts/poppins.ttf");
+    font-family: 'poppins';
+}
+
+footer p{
+    color: white;
+    text-align: center;
+    padding: 40px;
+    font-family: 'poppins';
+    font-size: 10px;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 0;
+}

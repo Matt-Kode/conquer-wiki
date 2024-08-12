@@ -9,11 +9,23 @@
     <link rel="manifest" href="/assets/icons/favicons/site.webmanifest">
     <link rel="mask-icon" href="/assets/icons/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="csrf_token" content="<?=createToken()?>">
     <meta name="theme-color" content="#ffffff">
 
     <link href="/assets/css/edit.css" rel="stylesheet">
     <title><?= WEBSITE_NAME . " | " . $data['page_title']?></title>
 </head>
+
+<div class="confirmation-backdrop">
+    <div class="confirmation">
+        <img src="/assets/icons/error.svg">
+        <p>Are you sure?</p>
+        <div class="decision">
+            <button onclick="closeConfirmation()" class="close">No</button>
+            <button class="proceed">Yes</button>
+        </div>
+    </div>
+</div>
 
 <?php
 include("header.php");
@@ -54,8 +66,8 @@ include("edit_sidebar.php");
                         <p id='page-info'>Created by: {$pagecreatedby} @ {$pagecreated}&nbsp;&nbsp;&nbsp;Last edited by: {$pageeditedby} @ {$pageedited}</p>
                     </div>
                     <span>
-                        <a href=" . ROOT_DIR . "/edit/edit_page/{$pageid}><img id='#edit-page-btn' src='/assets/icons/edit.svg'></a>
-                        <a href=" . ROOT_DIR . "/edit/delete_page/{$pageid}><img id='delete-page-btn' src='/assets/icons/delete.svg'></a>
+                        <a id='#edit-page-btn' href=" . ROOT_DIR . "/edit/edit_page/{$pageid}><img src='/assets/icons/edit.svg'></a>
+                        <button  id='delete-page-btn' onclick='openConfirmation(\"page\", {$pageid})'><img src='/assets/icons/delete.svg'></button>
                     </span>
                 </li>";
             }
@@ -76,6 +88,7 @@ include("edit_sidebar.php");
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
-<script src="/assets/js/pages.js"></script>
+<script src="/assets/js/page-list.js"></script>
+<script src="/assets/js/user-page-management.js"></script>
 
 </html>

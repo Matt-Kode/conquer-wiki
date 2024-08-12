@@ -10,6 +10,8 @@ const DB_NAME = 'wiki_db';
 const DB_USER = 'root';
 const DB_PASSWORD = '';
 
+const CSRF_TOKEN_SECRET = "vxyeewjqgdnkzwhlafhs";
+
 const DEBUG = true;
 
 if (DEBUG) {

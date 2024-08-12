@@ -31,14 +31,16 @@ body {
 }
 
 .users-table table {
-    width: 60vw;
+    width: 1000px;
     border-collapse: collapse;
     overflow: hidden;
     border-radius: 5px 5px 0 0;
 }
 
-#action-row {
-    padding: 0;
+#action-column {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
 }
 .users-table table tr {
     border-bottom: 3px solid #1f1f1f;
@@ -58,12 +60,12 @@ body {
 
 #delete-btn,
 #edit-btn {
-    display: inline-block;
     background-color: transparent;
     margin-top: auto;
     margin-bottom: auto;
     text-align: center;
-    text-decoration: none;
+    outline: none;
+    border: none;
     padding: 10px 10px;
     border-radius: 50%;
 }
@@ -98,7 +100,6 @@ h1 {
 }
 
 #username.null input,
-#password.null input,
 #username.too-long input,
 #password.too-long input{
     box-shadow: 0 0 3px 1px #ff0c0c;
@@ -112,8 +113,7 @@ h1 {
     font-style: italic;
 }
 
-#username.null #no-value,
-#password.null #no-value {
+#username.null #no-value {
     display: block;
 }
 
@@ -183,7 +183,7 @@ h1 {
 }
 
 .page {
-    width: 60vw;
+    width: 1000px;
     margin-bottom: 15px;
     display: flex;
     padding: 20px;
@@ -203,6 +203,17 @@ h1 {
     display: block;
     text-align: center;
     text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+#edit-page-btn img,
+#delete-page-btn img {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
     width: 20px;
     height: 20px;
 }
@@ -322,4 +333,85 @@ h1 {
 
 .tox-statusbar__branding {
     display: none; !important;
+}
+
+.error {
+    margin-bottom: 10px;
+    background-color: #ff0c0c;
+    padding: 10px 10px;
+    width: 500px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.confirmation-backdrop {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+}
+
+.confirmation {
+    width: 500px;
+    padding: 20px;
+    background-color: #494949;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.confirmation img {
+    width: 100px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+}
+
+.confirmation p {
+    color: white;
+    font-family: poppins;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.confirmation .decision {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.confirmation .decision .proceed,
+.confirmation .decision .close {
+    width: 100px;
+    outline: none;
+    border: none;
+    font-family: poppins;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+}
+
+.confirmation .decision .proceed {
+    background-color: #3c7aff;
+}
+
+.confirmation .decision .close {
+    background-color: transparent;
+    box-shadow: 0 0 0 2px #3c7aff inset;
+}
+
+.confirmation .decision button:hover {
+    background-color: #3367da;
+    box-shadow: none;
 }

@@ -27,7 +27,13 @@ include("edit_sidebar.php");
 
 <div class="user-add-form content">
     <h1>Edit user</h1>
+    <?php
+    if ($data['error_code'] == 1) {
+        echo "<div class='error'><img src='/assets/icons/error.svg'>&nbspUsername already in use</div>";
+    }
+    ?>
     <form method="post">
+        <input type="hidden" name="csrf_token" value="<?=createToken()?>">
         <label for="usernamein">Username</label>
         <div id="username">
             <input type="text" id="usernamein" name="username" placeholder="Username" value=<?= $data['username']?>>
@@ -36,7 +42,7 @@ include("edit_sidebar.php");
         </div>
         <label for="passwordin">Password</label>
         <div id="password">
-            <input type="text" id="passwordin" name="password" placeholder="Password" value=<?= $data['password']?>>
+            <input type="text" id="passwordin" name="password" placeholder="Password">
             <p id="no-value">Please enter a password</p>
             <p id="too-long">No more than 16 characters</p>
         </div>
@@ -51,6 +57,6 @@ include("edit_sidebar.php");
 
 </body>
 
-<script src="/assets/js/edit.js"></script>
+<script src="/assets/js/user-form-validation.js"></script>
 
 </html>

@@ -27,6 +27,7 @@ include("edit_sidebar.php");
 <div class="content">
     <h1>Edit page</h1>
     <form class="add-page-form" method="post">
+        <input type="hidden" name="csrf_token" value="<?=createToken()?>">
         <label for="namein">Name</label>
         <div id="name">
             <input type="text" id="namein" name="name" placeholder="Name" value='<?= $data['page_name']?>'>
@@ -45,8 +46,7 @@ include("edit_sidebar.php");
 <script src="/assets/js/page-editor.js"></script>
 <script>
     function saveEditableContent() {
-        let content = `<?=$data['page_content']?>`;
-        tinymce.activeEditor.setContent(content);
+        tinymce.activeEditor.setContent(`<?=$data['page_content']?>`);
     }
 </script>
 </html>

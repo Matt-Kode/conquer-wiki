@@ -11,13 +11,11 @@ body {
     display: flex;
     flex-wrap: nowrap;
     margin-top: 100px;
-    height: 100vh;
 }
 
 .pages {
     position: fixed;
     display: inline-block;
-    height: 100%;
     width: 300px;
 }
 
@@ -50,7 +48,6 @@ body {
 .page-contents {
     position: fixed;
     right: 0;
-    height: 100%;
     width: 250px;
 }
 
@@ -81,6 +78,11 @@ body {
     margin-bottom: 10px;
 }
 
+.page-contents a:hover,
+.pages a:hover {
+    background-color: #1f1f1f;
+}
+
 .main-content {
     overflow: hidden;
     margin-left: auto;
@@ -89,6 +91,82 @@ body {
     padding: 0 20px;
     color: white;
     font-family: poppins;
+}
+
+.main-content h1 {
+    scroll-margin-top: 100px;
+}
+
+.main-content img {
+    max-width: 100%;
+}
+
+.prev-next {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.prev-next a {
+    display: flex;
+    align-items: center;
+    color: white;
+    width: 250px;
+    height: 90px;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.prev-next a img {
+    width: 20px;
+    height: 20px;
+}
+
+.prev-next a:hover {
+    background-color: #1f1f1f;
+}
+
+.next {
+    margin-left: auto;
+    width: 250px;
+    justify-content: right;
+}
+
+.next div span {
+    display: block;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.prev div span {
+    display: block;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.name {
+    color: #3c7aff;
+}
+
+.name:hover {
+    text-decoration: underline;
+}
+
+.prev {
+    margin-right: auto;
+    justify-content: left;
+}
+
+.last-edited {
+    margin-top: 20px;
+}
+
+.last-edited p {
+    text-align: right;
+    color: #868686;
 }
 
 @media (max-width: 1630px) {

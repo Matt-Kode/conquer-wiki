@@ -23,7 +23,6 @@ function savePositions() {
         method: 'POST',
         dataType: 'text',
         data: {
-            update: 1,
             positions: positions
         }
     })

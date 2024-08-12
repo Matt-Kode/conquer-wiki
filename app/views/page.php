@@ -39,12 +39,30 @@ include("header.php");
         <?php
             echo $data['content'];
         ?>
+
+        <div class="last-edited">
+            <?php
+            echo "<p>Last edit by: " . $data['last_edited_by'] . " @ " . $data['last_edited_date'] . " EST</p>"
+            ?>
+        </div>
+        <div class="prev-next">
+                <?php
+                if (isset($data['previous_page'])) {
+                    echo "<a class='prev' href='/page/" . $data['previous_page']->page_url . "'><img src='/assets/icons/backward-arrow.svg'><div ><span>Previous</span><span class='name'>". $data['previous_page']->name ."</span></div></a>";
+                }
+                ?>
+                <?php
+                if (isset($data['next_page'])) {
+                    echo "<a class='next' href='/page/" . $data['next_page']->page_url . "'><div ><span>Next</span><span class='name'>". $data['next_page']->name ."</span></div><img src='/assets/icons/forward-arrow.svg'></a>";
+                }
+                ?>
+        </div>
     </div>
 </div>
 
-
-
+<?php
+include("footer.php");
+?>
 </body>
-
 <script src="/assets/js/page.js"></script>
 </html>

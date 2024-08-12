@@ -18,13 +18,9 @@ function openSearch() {
     searchbackdrop.style.display = 'block';
 }
 
-function closeSearch() {
-    searchbackdrop.style.display = 'none';
-}
-
 function outsideClick(e) {
     if (e.target === searchbackdrop) {
-        closeSearch();
+        searchbackdrop.style.display = 'none';
     }
 }
 
@@ -38,9 +34,7 @@ function fetchResults(input) {
         },
         success: function (results) {
             searchresults.innerHTML = '';
-            console.log(results.length);
             for (let i = 0; i<results.length; i++) {
-                console.log(results[i]);
                 searchresults.insertAdjacentHTML('beforeend', results[i]);
             }
         }

@@ -13,12 +13,8 @@ body {
     background-color: #494949;
 }
 
-.login-parent h1 {
-    text-align: center;
-}
-
 .login-parent {
-    padding: 60px 0;
+    padding: 50px 40px;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.18);
@@ -36,6 +32,7 @@ body {
 .login-parent h1 {
     color: white;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .login-parent form input{
@@ -77,20 +74,14 @@ body {
     background-color: #3367da;
 }
 
-.login-parent form {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-}
-
 .error {
     margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
     background-color: #ff0c0c;
     padding: 10px 10px;
-    width: 80%;
     border-radius: 5px;
+    width: 100%;
     display: flex;
     align-items: center;
 }

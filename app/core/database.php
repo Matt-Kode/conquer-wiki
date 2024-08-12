@@ -63,4 +63,13 @@ Class Database {
             return false;
         }
     }
+
+    public function user_exists($username) {
+        $query = "SELECT username FROM users WHERE username = :username";
+        $user = $this->read($query, ['username' => $username]);
+        if ($user) {
+            return true;
+        }
+        return false;
+    }
 }

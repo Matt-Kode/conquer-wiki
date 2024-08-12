@@ -11,12 +11,6 @@ window.addEventListener('submit', (e) => {
         usernamediv.classList.add('null');
     }
 
-    if (passwordinput.value === '') {
-        e.preventDefault();
-        passworddiv.classList.remove('too-long');
-        passworddiv.classList.add('null');
-    }
-
     if (usernameinput.value.length > 16) {
         e.preventDefault();
         usernamediv.classList.remove('null');

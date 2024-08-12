@@ -5,7 +5,7 @@ Class page extends Controller {
     function index($pageurl = '') {
 
         if ($pageurl == '') {
-            $this->view('404');
+
             return;
         }
 
@@ -14,7 +14,7 @@ Class page extends Controller {
         $page = $db->read($query, array('pageurl'=>$pageurl));
 
         if (!$page) {
-            $this->view('404');
+
             return;
         }
 
@@ -33,14 +33,10 @@ Class page extends Controller {
 
         if (isset($allpages[$page[0]->position])) {
             $data['next_page'] = $allpages[$page[0]->position];
-        } else {
-            $data['next_page'] = '';
         }
 
         if (isset($allpages[$page[0]->position - 2])) {
             $data['previous_page'] = $allpages[$page[0]->position - 2];
-        } else {
-            $data['previous_page'] = '';
         }
 
         $user = $this->loadModel('user');

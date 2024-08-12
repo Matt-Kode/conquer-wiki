@@ -9,12 +9,23 @@
     <link rel="manifest" href="/assets/icons/favicons/site.webmanifest">
     <link rel="mask-icon" href="/assets/icons/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="csrf_token" content="<?=createToken()?>">
     <meta name="theme-color" content="#ffffff">
 
     <link href="/assets/css/edit.css" rel="stylesheet">
     <title><?= WEBSITE_NAME . " | " . $data['page_title']?></title>
 </head>
 
+<div class="confirmation-backdrop">
+    <div class="confirmation">
+        <img src="/assets/icons/error.svg">
+        <p>Are you sure?</p>
+        <div class="decision">
+            <button onclick="closeConfirmation()" class="close">No</button>
+            <button class="proceed">Yes</button>
+        </div>
+    </div>
+</div>
 
 <?php
 include("header.php")
@@ -34,7 +45,6 @@ include("edit_sidebar.php");
         <tr>
             <th>Id</th>
             <th>Username</th>
-            <th>Password</th>
             <th>Permission</th>
             <th>Action</th>
         </tr>
@@ -45,16 +55,14 @@ include("edit_sidebar.php");
             for ($i = 0; $i < count($data['users']); $i++) {
                 $userid = $data['users'][$i]->id;
                 $username = $data['users'][$i]->username;
-                $password = $data['users'][$i]->password;
                 $role_weight = $data['users'][$i]->permission;
                 echo
 
                 "<tr>
                 <td>{$userid}</td>
                 <td>{$username}</td>
-                <td>{$password}</td>
                 <td>{$role_weight}</td>
-                <td id='action-row'><a id='edit-btn' href=" . ROOT_DIR . "/edit/edit_user/{$userid}><img src='/assets/icons/edit.svg'></a><a id='delete-btn' href=" . ROOT_DIR . "/edit/delete_user/{$userid}><img src='/assets/icons/delete.svg'></a></td>
+                <td id='action-column'><a id='edit-btn' href=" . ROOT_DIR . "/edit/edit_user/{$userid}><img src='/assets/icons/edit.svg'></a><button id='delete-btn' onclick='openConfirmation(\"user\", {$userid})'><img src='/assets/icons/delete.svg'></button></td>
             </tr>";
             }
         }
@@ -64,5 +72,6 @@ include("edit_sidebar.php");
 </div>
 
 </body>
-
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="/assets/js/user-page-management.js"></script>
 </html>
