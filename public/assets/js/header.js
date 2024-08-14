@@ -15,7 +15,7 @@ accountbox.addEventListener("click", () => {
 
 window.addEventListener('click', outsideClick);
 function openSearch() {
-    searchbackdrop.style.display = 'block';
+    searchbackdrop.style.display = 'flex';
 }
 
 function outsideClick(e) {

@@ -33,7 +33,7 @@ tinymce.init({
         'removeformat',
     images_upload_url: "/edit/upload_image",
     skin: 'oxide-dark',
-    width: '60vw',
+    width: '100%',
     content_style: 'body{color: #fff; background-color: #333333; max-width:900px} img{max-width:900px;}',
     init_instance_callback: checkForEditableContent
 });

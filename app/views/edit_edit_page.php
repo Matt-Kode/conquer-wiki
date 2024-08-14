@@ -24,9 +24,9 @@ include("edit_sidebar.php");
 ?>
 
 <body>
-<div class="content">
+<div class="add-page-form content">
     <h1>Edit page</h1>
-    <form class="add-page-form" method="post">
+    <form method="post">
         <input type="hidden" name="csrf_token" value="<?=createToken()?>">
         <label for="namein">Name</label>
         <div id="name">

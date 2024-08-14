@@ -11,6 +11,7 @@ body {
 .users-table {
     font-family: poppins;
     display: inline-block;
+    width: 1000px;
 }
 
 #add-user-btn {
@@ -31,7 +32,7 @@ body {
 }
 
 .users-table table {
-    width: 1000px;
+    width: 100%;
     border-collapse: collapse;
     overflow: hidden;
     border-radius: 5px 5px 0 0;
@@ -47,7 +48,7 @@ body {
 }
 
 .users-table table tr td,
-.users-table table tr th{
+.users-table table tr th {
     padding: 15px 10px;
     font-weight: normal;
     text-align: left;
@@ -305,6 +306,7 @@ h1 {
 
 .add-page-form {
     color: white;
+    padding-right: 50px;
 }
 
 .add-page-form label {
@@ -414,4 +416,36 @@ h1 {
 .confirmation .decision button:hover {
     background-color: #3367da;
     box-shadow: none;
+}
+
+@media (max-width: 1350px) {
+    .content {
+        margin-left: 0;
+        margin-top: 120px;
+    }
+
+    .pages-list-container {
+        padding: 0 20px;
+    }
+
+    .page {
+        width: 100%;
+    }
+
+    .users-table {
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .user-add-form,
+    .add-page-form {
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .user-add-form input[type=text],
+    .add-page-form input[type=text] {
+        width: 100%;
+    }
+
 }

@@ -25,13 +25,15 @@ include("header.php");
 <div class="container">
     <img class="logo" src="/assets/icons/logo.png">
     <p>Welcome to the official <b>ConquerEarthMC</b> Wiki! This is a ConquerEarth-led, community-maintained Wiki for ConquerEarthMC. Our goal is to provide the most accurate information in the best way possible. We will continually improve where needed and hope to provide the best transparency.</p>
-    <p>Interested in helping improve the Wiki? Join our <a href="#">discord</a> and make a ticket to apply.</p>
+    <p>Interested in helping improve the Wiki? Join our <a href="https://www.conquerearthmc.com/discord">discord</a> and make a ticket to apply.</p>
     <?php
+    if ($data['pages']) {
         foreach ($data['pages'] as $page) {
             echo "
                <a class='page' href='/page/{$page->page_url}'>{$page->name}</a>
             ";
         }
+    }
     ?>
 </div>
 <?php

@@ -2,6 +2,10 @@
     <link href="/assets/css/edit_sidebar.css" rel="stylesheet">
 </head>
 <html>
+
+<div class="mobile-nav">
+    Navigation
+</div>
 <div class="sidebar-parent">
     <p>Site</p>
     <a class="<?php echo checkActive($data,"dashboard")?>" href=<?= ROOT_DIR . "/edit/dashboard"?>><img src="/assets/icons/dashboard.svg">&nbsp;&nbsp;Dashboard</a>
@@ -13,5 +17,5 @@
     };
 ?>
 </div>
-
+<script src="/assets/js/sidebar.js"></script>
 </html>

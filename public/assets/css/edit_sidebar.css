@@ -1,11 +1,12 @@
 .sidebar-parent {
+    display: block;
     padding-top: 40px;
     padding-left: 10px;
     padding-right: 10px;
     height: 100%;
     top: 60px;
     width: 250px;
-    z-index: 99;
+    z-index: 98;
     display: block;
     position: fixed;
     background-color: #1f1f1f;
@@ -42,4 +43,40 @@
     color: #868686;
     font-family: poppins;
     padding: 5px 10px;
+}
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    top: 60px;
+    background-color: #1f1f1f;
+    height: 45px;
+    color: white;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    font-family: poppins;
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 2px solid #333333;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1350px) {
+    .sidebar-parent {
+        display: none;
+        width: 50%;
+        padding-top: 50px;
+    }
+
+    .sidebar-parent a,
+    .sidebar-parent p {
+    }
+
+    .mobile-nav {
+        display: flex;
+    }
 }
