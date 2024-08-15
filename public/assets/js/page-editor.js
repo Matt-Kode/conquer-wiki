@@ -34,7 +34,7 @@ tinymce.init({
     images_upload_url: "/edit/upload_image",
     skin: 'oxide-dark',
     width: '100%',
-    content_style: 'body{color: #fff; background-color: #333333; max-width:900px} img{max-width:900px;}',
+    content_style: 'body{color: #fff; background-color: #333333; max-width:840px} img{max-width:840px;}',
     init_instance_callback: checkForEditableContent
 });
 

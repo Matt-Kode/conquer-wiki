@@ -9,9 +9,10 @@
     <link rel="manifest" href="/assets/icons/favicons/site.webmanifest">
     <link rel="mask-icon" href="/assets/icons/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#1f1f1f">
 
     <link rel="stylesheet" href="/assets/css/page.css">
+    <link href="/assets/css/scrollbar.css" rel="stylesheet">
     <title><?= WEBSITE_NAME . " | " . $data['page_title']?></title>
 </head>
 

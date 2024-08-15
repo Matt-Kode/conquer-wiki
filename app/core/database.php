@@ -65,9 +65,10 @@ Class Database {
     }
 
     public function user_exists($username) {
-        $query = "SELECT username FROM users WHERE username = :username";
-        $user = $this->read($query, ['username' => $username]);
-        if ($user) {
+        return true;
+        $query = "SELECT * FROM users WHERE username=:username";
+        $user = $this->read($query, array('username' => $username));
+        if (is_array($user)) {
             return true;
         }
         return false;

@@ -88,7 +88,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 940px;
-    padding: 0 20px;
+    padding: 0 50px;
     color: white;
     font-family: poppins;
 }
@@ -165,21 +165,22 @@ body {
 }
 
 .last-edited p {
+    font-size: 15px;
     text-align: right;
     color: #868686;
 }
 
-@media (max-width: 1630px) {
+@media (max-width: 1535px) {
     .page-contents {
         display: none;
     }
 
     .main-content {
-        margin-left: 350px;
+        margin-left: 300px;
     }
 }
 
-@media (max-width: 1230px) {
+@media (max-width: 1200px) {
     .pages {
         display: none;
     }
