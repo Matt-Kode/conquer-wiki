@@ -8,13 +8,17 @@ window.addEventListener('submit', (e) => {
         e.preventDefault();
         namediv.classList.remove('too-long');
         namediv.classList.add('null');
+        return;
     }
 
     if (nameinput.value.length > 16) {
         e.preventDefault();
         namediv.classList.remove('null');
         namediv.classList.add('too-long');
+        return;
     }
+
+    tinymce.activeEditor.save();
 
 });
 

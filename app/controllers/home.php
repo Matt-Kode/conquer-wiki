@@ -4,7 +4,7 @@ Class Home extends Controller {
 
     function index() {
 
-        $data['page_title'] = 'home';
+        $data['page_title'] = 'Home';
 
         $db = new Database();
         $query = "SELECT * FROM pages ORDER BY position";
@@ -16,7 +16,4 @@ Class Home extends Controller {
 
         $this->view('home', $data);
     }
-
-
-
 }

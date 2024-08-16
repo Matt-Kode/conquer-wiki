@@ -220,11 +220,13 @@ Class Edit extends Controller
                         date_default_timezone_set("America/New_York");
                         $date = date('Y-m-d H:i:s a');
 
-                        $page_url = str_replace(" ", "_", strtolower($_POST['name']));
+                        $page_url = strtr(strtolower($_POST['name']), " /&", "___");
 
                         $DB = new Database();
-                        $query = "INSERT INTO pages (name, page_url, content, created_at, created_by, last_edited, last_edited_by) VALUES (:name, :page_url, :content, :created_at, :created_by, :last_edited, :last_edited_by)";
-                        $DB->write($query, array('name' => $_POST['name'], 'page_url' => $page_url, 'content' => $_POST['content'], 'created_at' => $date, 'created_by' => $creating_user, 'last_edited' => $date, 'last_edited_by' => $creating_user));
+                        $largestPositionQuery = "SELECT MAX(position) AS largest_position FROM pages";
+                        $largestPosition = $DB->read($largestPositionQuery)[0]->largest_position;
+                        $query = "INSERT INTO pages (name, page_url, content, created_at, created_by, last_edited, last_edited_by, position) VALUES (:name, :page_url, :content, :created_at, :created_by, :last_edited, :last_edited_by, :position)";
+                        $DB->write($query, array('name' => $_POST['name'], 'page_url' => $page_url, 'content' => $_POST['content'], 'created_at' => $date, 'created_by' => $creating_user, 'last_edited' => $date, 'last_edited_by' => $creating_user, 'position' => $largestPosition + 1));
 
                         header("Location: " . ROOT_DIR . "/edit/pages");
                         return;
@@ -286,13 +288,13 @@ Class Edit extends Controller
                     return;
                 }
 
-                if (isset($_POST['content']) && isset($_POST['name'])  && isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
+                if (isset($_POST['content'])) {
 
                     $editing_user = $_SESSION['username'];
                     date_default_timezone_set("America/New_York");
                     $date = date('Y-m-d H:i:s a');
 
-                    $page_url = str_replace(" ", "_", strtolower($_POST['name']));
+                    $page_url = strtr(strtolower($_POST['name']), " /&", "___");
 
                     $update_query = "UPDATE pages SET content=:content, page_url=:page_url, name=:name, last_edited=:date, last_edited_by=:editing_user WHERE id=:pageid";
                     $db->write($update_query, array('content' => $_POST['content'], 'page_url' => $page_url, 'name' => $_POST['name'],'date' => $date, 'editing_user' => $editing_user,  'pageid' => $pageid));
