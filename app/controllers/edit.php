@@ -137,7 +137,7 @@ Class Edit extends Controller
 
                 if (isset($_POST['username']) && isset($_POST['permission']) && isset($_POST['csrf_token']) && validateToken($_POST['csrf_token'])) {
 
-                    if ($DB->user_exists($_POST['username'])) {
+                    if (!$DB->user_exists($_POST['username'])) {
                         if ($_POST['password'] != '') {
                             $hashedpassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
