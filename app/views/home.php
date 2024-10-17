@@ -31,7 +31,7 @@ include("header.php");
     if ($data['pages']) {
         foreach ($data['pages'] as $page) {
             echo "
-               <a class='page' href='/page/{$page->page_url}'>{$page->name}</a>
+               <div class='underlay'><a class='page' href='/page/{$page->page_url}'>{$page->name}</a></div>
             ";
         }
     }

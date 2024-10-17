@@ -54,9 +54,7 @@
     font-size: 30px;
     text-decoration: none;
     font-family: jaini;
-    color: transparent;
-    background: linear-gradient(to right, #D4145A ,#FBB03B);
-    background-clip: text;
+    color: #F71735;
 }
 
 #navbar {

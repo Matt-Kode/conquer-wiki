@@ -23,6 +23,7 @@ include("header.php");
 <div class="container">
     <div class="pages">
         <p>PAGES</p>
+        <div class="pages-list">
         <?php
             foreach ($data['all_pages_info'] as $page) {
                 echo "
@@ -30,10 +31,12 @@ include("header.php");
                 ";
             }
         ?>
+        </div>
     </div>
 
     <div class="page-contents">
         <p>PAGE CONTENTS</p>
+        <div class="contents-list"></div>
     </div>
 
     <div class="main-content">

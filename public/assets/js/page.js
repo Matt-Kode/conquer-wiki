@@ -1,4 +1,4 @@
-const pagecontents = document.querySelector(".page-contents");
+const pagecontents = document.querySelector(".contents-list");
 const h1s = document.getElementsByTagName("h1");
 
 if (h1s.length == 0) {
@@ -15,7 +15,7 @@ for (let i = 0; i < h1s.length; i++) {
 
 
 
-document.querySelectorAll('.page-contents > a').forEach((link) => {
+document.querySelectorAll('.contents-list > a').forEach((link) => {
     link.addEventListener('click', () => {
         removeCurrentlyActive();
         link.classList.add("active");
@@ -40,7 +40,7 @@ function isInView(value) {
 }
 
 function removeCurrentlyActive() {
-   document.querySelectorAll(".page-contents > a").forEach((link) =>{
+   document.querySelectorAll(".contents-list > a").forEach((link) =>{
         link.classList.remove('active');
     })
 }
@@ -50,7 +50,7 @@ function checkCurrentHeading() {
         let h1 = h1s[i];
         if (isInView(h1)) {
             removeCurrentlyActive();
-            document.querySelector(`.page-contents > a[href="#${h1.id}"]`).classList.add("active");
+            document.querySelector(`.contents-list > a[href="#${h1.id}"]`).classList.add("active");
             return;
         }
     }

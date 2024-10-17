@@ -9,7 +9,7 @@ Class App {
 
         if  (empty($_GET['url'])) {
             header("Location: " . ROOT_DIR . "/home");
-            die();
+            return;
         }
 
         $url = $this->splitUrl();

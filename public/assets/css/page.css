@@ -47,15 +47,17 @@ body {
     border-right: 6px solid #3c7aff;
 }
 
-.pages p {
-}
-
 .page-contents {
     position: fixed;
     right: 0;
     width: 250px;
-    overflow-y: scroll;
     height: calc(100vh - 100px);
+}
+
+.contents-list,
+.pages-list {
+    height: calc(100% - 61px);
+    overflow-y: scroll;
 }
 
 .page-contents a {
